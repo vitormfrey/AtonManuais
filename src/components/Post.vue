@@ -1,0 +1,78 @@
+<template>
+  <div class="container Post">
+    <div v-for="post in $allPosts" :key="post.id">
+      <article class="post-container px-8 py-5" @click="pegarPost(post)">
+        <h1 class="post-titulo text-2xl cursor-auto">{{ post.titulo }}</h1>
+        <h3 class="post-departamento text-sm cursor-auto">
+          Departamento: {{ post.departamento }}
+        </h3>
+        <p class="post-descricao text-sm cursor-auto">{{ post.descricao }}</p>
+        <p class="call-to-action text-sm">Ler mais...</p>
+      </article>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'HelloWorld',
+  props: {},
+  data() {
+    return {
+      posts: []
+    }
+  },
+  created() {
+    this.$store.dispatch('fetchPosts')
+  },
+  methods: {
+    pegarPost(e) {
+      console.log(e.id)
+      const id = e.id
+      this.$router.push({ name: 'post', params: { id: id } })
+      this.$store.dispatch('selectPost', id)
+    }
+  },
+  computed: {
+    $allPosts() {
+      return this.$store.getters.$allPosts
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+:root {
+  --azul-aton: #003561;
+}
+.container {
+  display: grid;
+  grid-template-columns: 800px;
+  grid-auto-rows: 250px;
+  grid-gap: 3.75rem;
+  justify-content: center;
+}
+.post-container {
+  background: #f5f5f5;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  grid-gap: 1rem;
+  cursor: pointer;
+}
+.post-titulo,
+.post-departamento,
+.call-to-action {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #003561;
+  text-align: left;
+}
+.post-descricao {
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+</style>

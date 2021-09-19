@@ -1,25 +1,24 @@
 <template>
-  <div class="home">
+  <div class="post">
+    <h1>Post {{ $route.params.id }}</h1>
     <BarraLateral />
-    <Post />
+    <ReadPost />
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import Post from '@/components/Post.vue'
+import ReadPost from '@/components/ReadPost.vue'
 import BarraLateral from '@/components/BarraLateral.vue'
-
 export default {
-  name: 'Home',
+  name: 'Post',
   components: {
-    Post,
+    ReadPost,
     BarraLateral
   }
 }
 </script>
+
 <style scoped>
-.home {
+.post {
   display: grid;
   grid-template-columns: 20vh 1fr;
   grid-template-rows: 55px calc(100vh - 55px);
@@ -31,7 +30,7 @@ export default {
 .BarraLateral {
   grid-area: sidebar;
 }
-.Post {
+.ReadPost {
   grid-area: conteudo;
 }
 </style>
