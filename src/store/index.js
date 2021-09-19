@@ -15,15 +15,27 @@ export default createStore({
   },
   actions: {
     async fetchPosts(context) {
-      const { data } = await axios.get('/manuais')
-      //console.log(data)
-      context.commit('SET_POSTS', data)
+      try {
+        const { data } = await axios.get('/manuais')
+        if (data.length === 0) {
+          throw new Error('Api não encontrou nenhum manual!!!')
+        }
+        context.commit('SET_POSTS', data)
+      } catch (err) {
+        alert(err.message.toUpperCase())
+      }
     },
 
     async selectPost(context, payload) {
-      const { data } = await axios.get(`/manuais/${payload}`)
-      console.log(data)
-      context.commit('SET_POST', data)
+      try {
+        const { data } = await axios.get(`/manuais/${payload}`)
+        if (data.id != payload) {
+          throw new Error(`O id: ${payload} não é válido ou não existe!`)
+        }
+        context.commit('SET_POST', data)
+      } catch (err) {
+        alert(err.message.toUpperCase())
+      }
     }
   },
   getters: {
