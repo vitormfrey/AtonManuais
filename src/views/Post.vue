@@ -13,6 +13,9 @@ export default {
   components: {
     ReadPost,
     BarraLateral
+  },
+  created() {
+    document.title = 'AtonSystems'
   }
 }
 </script>
@@ -20,12 +23,11 @@ export default {
 <style scoped>
 .post {
   display: grid;
-  grid-template-columns: 20vh 1fr;
-  grid-template-rows: 55px calc(100vh - 55px);
+  grid-template-columns: 15vw auto;
+  grid-gap: 3.75rem;
   grid-template-areas:
     'sidebar conteudo'
     'sidebar conteudo';
-  justify-items: center;
 }
 .BarraLateral {
   grid-area: sidebar;
