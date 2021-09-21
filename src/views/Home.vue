@@ -1,7 +1,10 @@
 <template>
   <div class="home">
     <BarraLateral />
-    <Post />
+    <div class="conteudo">
+      <Titulo />
+      <Post />
+    </div>
   </div>
 </template>
 
@@ -9,14 +12,14 @@
 // @ is an alias to /src
 import Post from '@/components/Post.vue'
 import BarraLateral from '@/components/BarraLateral.vue'
-//import Titulo from '@/components/Titulo.vue'
+import Titulo from '@/components/Titulo.vue'
 
 export default {
   name: 'Home',
   components: {
     Post,
-    BarraLateral
-    //Titulo
+    BarraLateral,
+    Titulo
   },
   created() {
     document.title = 'AtonSystems'
@@ -26,8 +29,8 @@ export default {
 <style scoped>
 .home {
   display: grid;
-  grid-template-columns: 15vw auto;
-  /* grid-gap: 60px; */
+  grid-template-columns: 15vw 1fr;
+  grid-gap: 150px;
   grid-template-areas:
     'sidebar conteudo'
     'sidebar conteudo';
@@ -35,7 +38,8 @@ export default {
 .BarraLateral {
   grid-area: sidebar;
 }
-.Post {
+.conteudo {
   grid-area: conteudo;
+  padding-top: 30px;
 }
 </style>

@@ -52,7 +52,7 @@ export default {
   grid-template-columns: 800px;
   grid-auto-rows: 250px;
   grid-gap: 3.75rem;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .post-container {
   background: #f5f5f5;
