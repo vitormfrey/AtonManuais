@@ -17,6 +17,7 @@ export default createStore({
     async fetchPosts(context) {
       try {
         const { data } = await axios.get('/manuais')
+        console.log(data)
         if (data.length === 0) {
           throw new Error('Api não encontrou nenhum manual!!!')
         }
@@ -44,6 +45,9 @@ export default createStore({
     },
     $selectPost(state) {
       return state.post
+    },
+    $getPostContent(state) {
+      return state.post.conteudo
     }
   }
 })
