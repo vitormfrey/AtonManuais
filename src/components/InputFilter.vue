@@ -59,13 +59,12 @@
 </template>
 
 <script>
-
 export default {
-  name: "InputFilter",
+  name: 'InputFilter',
   props: {},
   data() {
-    return {};
-  },
+    return {}
+  }
 }
 </script>
 
