@@ -20,14 +20,9 @@ export default {
 
 <style scoped>
 .barra-container {
-  height: 100%;
-  width: 250px;
   position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  padding-top: 20px;
+  height: 100%;
+  width: 15vw;
   background: #003561;
 }
 </style>
