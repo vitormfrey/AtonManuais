@@ -4,20 +4,44 @@
     <h3 class="post-departamento text-sm cursor-auto">
       Departamento: {{ $selectPost.departamento }}
     </h3>
-
     <section class="body-conteudo" v-html="$getPostContent"></section>
   </div>
-  <div v-else></div>
+  <div v-else>
+    <div class="ReadPost my-5">
+      <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
+      <h3 class="post-departamento text-sm cursor-auto">
+        Departamento: {{ post.departamento }}
+      </h3>
+      <section class="body-conteudo" v-html="post.conteudo"></section>
+    </div>
+  </div>
 </template>
 
 <script>
 import marked from 'marked'
+import axios from '../utils/axios'
 export default {
   name: 'ReadPost',
   props: {},
   data() {
     return {
-      teste: '### hg'
+      post: {}
+    }
+  },
+  created() {
+    this.getPost()
+  },
+  methods: {
+    async getPost() {
+      try {
+        const { data } = await axios.get(`/manuais/${this.$route.params.id}`)
+        this.post = data
+        this.post.conteudo = marked(data.conteudo)
+        return this.post
+      } catch (err) {
+        //Tratar posteriormente
+        alert(`O id: ${this.$route.params.id} não é válido ou não existe!`)
+      }
     }
   },
   computed: {
