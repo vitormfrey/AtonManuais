@@ -4,23 +4,17 @@ export default createStore({
   state: {
     posts: [],
     departamento: [],
-    post: {}
+    post: {},
+    postConteudo: {}
   },
   mutations: {
     SET_POSTS(state, payload) {
       state.posts = payload
+    },
 
-      //Lógica para popular Arr e ArrEspelho
-      const newArr = []
-      const arrEspelho = []
-      payload.forEach((e) => {
-        newArr.push(e.departamento)
-        arrEspelho.push(e.departamento)
-      })
-      //Populando departamento com filtragem
-      state.departamento = newArr.filter(
-        (este, i) => arrEspelho.indexOf(este) === i
-      )
+    SET_DEPARTAMENTO(state, payload) {
+      state.departamento = payload
+      console.log(state.departamento)
     },
 
     FILTER_DEPARTMENT(state, payload) {
@@ -29,6 +23,7 @@ export default createStore({
 
     SET_POST(state, payload) {
       state.post = payload
+      state.postConteudo = payload.conteudo
     }
   },
   actions: {
@@ -44,12 +39,36 @@ export default createStore({
       }
     },
 
+    async fetchDepartamento(context) {
+      try {
+        const { data } = await axios.get('/manuais')
+        if (data.length === 0) {
+          throw new Error('Api não retorna departamentos')
+        }
+        //Lógica para popular Arr e ArrEspelho
+        const newArr = []
+        const arrEspelho = []
+        data.forEach(({ departamento }) => {
+          newArr.push(departamento)
+          arrEspelho.push(departamento)
+        })
+        // console.log(newArr, 'Espelho: ' + arrEspelho)
+        const payload = newArr.filter(
+          (este, i) => arrEspelho.indexOf(este) === i
+        )
+        // console.log(`Payload: ${payload}`)
+        context.commit('SET_DEPARTAMENTO', payload)
+      } catch (err) {
+        alert(err.message.toUpperCase())
+      }
+    },
+
     async filtrarDepartamento(context, payload) {
       try {
         const { data } = await axios.get(`/manuais?departamento=${payload}`)
         console.log(`${data} e ${payload}`)
         if (data.length === 0) {
-          throw new Error('Api não encontrou nenhum manual!!!')
+          throw new Error(`Não foi possível encontrar nenhum manual ${payload}`)
         }
         context.commit('FILTER_DEPARTMENT', data)
       } catch (err) {
@@ -80,7 +99,7 @@ export default createStore({
       return state.post
     },
     $getPostContent(state) {
-      return state.post.conteudo
+      return state.postConteudo
     }
   }
 })
