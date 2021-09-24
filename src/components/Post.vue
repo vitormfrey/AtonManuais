@@ -1,7 +1,21 @@
 <template>
   <div class="container Post">
     <div v-for="post in $allPosts" :key="post.id">
-      <article class="post-container px-8 py-5" @click="pegarPost(post)">
+      <article
+        class="
+          post-container
+          px-8
+          py-5
+          rounded-lg
+          transtion
+          duration-500
+          ease-in-out
+          hover:bg-gray-300
+          transform
+          hover:-translate-y-1 hover:scale-110
+        "
+        @click="pegarPost(post)"
+      >
         <h1 class="post-titulo text-2xl cursor-auto">{{ post.titulo }}</h1>
         <h3 class="post-departamento text-sm cursor-auto">
           Departamento: {{ post.departamento }}
