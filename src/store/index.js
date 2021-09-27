@@ -10,11 +10,12 @@ export default createStore({
   mutations: {
     SET_POSTS(state, payload) {
       state.posts = payload
+      // console.log(state.posts)
     },
 
     SET_DEPARTAMENTO(state, payload) {
       state.departamento = payload
-      console.log(state.departamento)
+      // console.log(state.departamento)
     },
 
     FILTER_DEPARTMENT(state, payload) {
@@ -41,23 +42,11 @@ export default createStore({
 
     async fetchDepartamento(context) {
       try {
-        const { data } = await axios.get('/manuais')
+        const { data } = await axios.get('/departamentos')
         if (data.length === 0) {
           throw new Error('Api não retorna departamentos')
         }
-        //Lógica para popular Arr e ArrEspelho
-        const newArr = []
-        const arrEspelho = []
-        data.forEach(({ departamento }) => {
-          newArr.push(departamento)
-          arrEspelho.push(departamento)
-        })
-        // console.log(newArr, 'Espelho: ' + arrEspelho)
-        const payload = newArr.filter(
-          (este, i) => arrEspelho.indexOf(este) === i
-        )
-        // console.log(`Payload: ${payload}`)
-        context.commit('SET_DEPARTAMENTO', payload)
+        context.commit('SET_DEPARTAMENTO', data)
       } catch (err) {
         alert(err.message.toUpperCase())
       }
@@ -65,10 +54,14 @@ export default createStore({
 
     async filtrarDepartamento(context, payload) {
       try {
-        const { data } = await axios.get(`/manuais?departamento=${payload}`)
-        console.log(`${data} e ${payload}`)
+        const { id, tipo } = payload
+
+        const { data } = await axios.get(`/manuais?departamentos=${id}`)
+        // console.log(`${data} e ${payload}`)
         if (data.length === 0) {
-          throw new Error(`Não foi possível encontrar nenhum manual ${payload}`)
+          throw new Error(
+            `Não foi possível encontrar nenhum manual do departamento: ${tipo}`
+          )
         }
         context.commit('FILTER_DEPARTMENT', data)
       } catch (err) {
