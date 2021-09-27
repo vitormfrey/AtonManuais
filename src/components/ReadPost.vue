@@ -1,19 +1,18 @@
 <template>
-  <div class="ReadPost" v-if="Object.keys($selectPost).length != 0">
+  <div class="ReadPost my-5" v-if="Object.keys($selectPost).length != 0">
     <h1 class="post-titulo text-4xl cursor-auto">{{ $selectPost.titulo }}</h1>
     <h3 class="post-departamento text-sm cursor-auto">
-      Departamento: {{ $selectPost.departamento }}
+      Departamento: {{ $selectPost.departamentos.tipo }}
     </h3>
     <section class="body-conteudo" v-html="$getPostContent"></section>
   </div>
-  <div v-else>
-    <div class="ReadPost my-5">
-      <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
-      <h3 class="post-departamento text-sm cursor-auto">
-        Departamento: {{ post.departamento }}
-      </h3>
-      <section class="body-conteudo" v-html="post.conteudo"></section>
-    </div>
+
+  <div class="ReadPost my-5" v-else>
+    <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
+    <h3 class="post-departamento text-sm cursor-auto">
+      Departamento: {{ departamento }}
+    </h3>
+    <section class="body-conteudo" v-html="post.conteudo"></section>
   </div>
 </template>
 
@@ -25,7 +24,8 @@ export default {
   props: {},
   data() {
     return {
-      post: {}
+      post: {},
+      departamento: ''
     }
   },
   created() {
@@ -37,6 +37,7 @@ export default {
         const { data } = await axios.get(`/manuais/${this.$route.params.id}`)
         this.post = data
         this.post.conteudo = marked(data.conteudo)
+        this.departamento = data.departamentos.tipo
         return this.post
       } catch (err) {
         //Tratar posteriormente

@@ -5,12 +5,12 @@
       <ul class="barra-inside h-full">
         <li
           class="transition duration-700 ease-in-out hover:bg-white w-full"
-          v-for="(departamento, index) in $getDepartamentos"
-          :key="index"
+          v-for="departamento in $getDepartamentos"
+          :key="departamento.id"
           @click="filtrarDepartamento(departamento)"
         >
           <p class="text-lg hover:text-blue-700">
-            {{ departamento }}
+            {{ departamento.tipo }}
           </p>
         </li>
       </ul>

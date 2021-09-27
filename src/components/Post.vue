@@ -18,7 +18,7 @@
       >
         <h1 class="post-titulo text-2xl cursor-auto">{{ post.titulo }}</h1>
         <h3 class="post-departamento text-sm cursor-auto">
-          Departamento: {{ post.departamento }}
+          Departamento: {{ post.departamentos.tipo }}
         </h3>
         <p class="post-descricao text-sm cursor-auto">{{ post.descricao }}</p>
         <p class="call-to-action text-sm">Ler mais...</p>
@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     pegarPost(e) {
-      console.log(e.id)
       const id = e.id
       this.$router.push({ name: 'post', params: { id: id } })
       this.$store.dispatch('selectPost', id)
