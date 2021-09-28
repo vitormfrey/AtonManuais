@@ -39,7 +39,7 @@ export default createStore({
         const { data } = await axios.get('/manuais')
         if (data.length === 0) {
           throw new Error(
-            'Api não encontrou nenhum manual, volte mais tarde  😉'
+            'Api não encontrou nenhum manual, volte mais tarde 😉'
           )
         }
         context.commit('SET_POSTS', data)
