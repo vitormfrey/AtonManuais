@@ -5,6 +5,12 @@
       <ul class="barra-inside h-full">
         <li
           class="transition duration-700 ease-in-out hover:bg-white w-full"
+          @click="mostrarDepartamentos()"
+        >
+          <p class="text-lg hover:text-blue-700">Todas</p>
+        </li>
+        <li
+          class="transition duration-700 ease-in-out hover:bg-white w-full"
           v-for="departamento in $getDepartamentos"
           :key="departamento.id"
           @click="filtrarDepartamento(departamento)"
@@ -29,6 +35,13 @@ export default {
   methods: {
     filtrarDepartamento(e) {
       this.$store.dispatch('filtrarDepartamento', e)
+    },
+    mostrarDepartamentos() {
+      if (this.$route.path === '/') {
+        this.$store.dispatch('fetchPosts')
+      } else {
+        this.$router.push('/')
+      }
     }
   },
   computed: {
