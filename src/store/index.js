@@ -42,7 +42,7 @@ export default createStore({
 
     async fetchDepartamento(context) {
       try {
-        const { data } = await axios.get('/departamentos')
+        const { data } = await axios.get('/departamentos?_sort=tipo:ASC')
         if (data.length === 0) {
           throw new Error('Api não retorna departamentos')
         }
