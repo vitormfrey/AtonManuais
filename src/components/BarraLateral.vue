@@ -7,7 +7,7 @@
           class="transition duration-700 ease-in-out hover:bg-white w-full"
           @click="mostrarDepartamentos()"
         >
-          <p class="text-lg hover:text-blue-700">Todas</p>
+          <p class="text-lg hover:text-blue-700">Todos</p>
         </li>
         <li
           class="transition duration-700 ease-in-out hover:bg-white w-full"
@@ -41,6 +41,7 @@ export default {
         this.$store.dispatch('fetchPosts')
       } else {
         this.$router.push('/')
+        this.$store.dispatch('limparEstado')
       }
     }
   },

@@ -25,21 +25,29 @@ export default createStore({
     SET_POST(state, payload) {
       state.post = payload
       state.postConteudo = payload.conteudo
+    },
+
+    CLEAR_POST_MEMORY(state, payload) {
+      state.post = payload
+      state.postConteudo = payload
     }
   },
   actions: {
+    //Puxar todos os manuais
     async fetchPosts(context) {
       try {
         const { data } = await axios.get('/manuais')
         if (data.length === 0) {
-          throw new Error('Api não encontrou nenhum manual!!!')
+          throw new Error(
+            'Api não encontrou nenhum manual, volte mais tarde  😉'
+          )
         }
         context.commit('SET_POSTS', data)
       } catch (err) {
         alert(err.message.toUpperCase())
       }
     },
-
+    //Puxar todos os departamentos
     async fetchDepartamento(context) {
       try {
         const { data } = await axios.get('/departamentos?_sort=tipo:ASC')
@@ -51,7 +59,7 @@ export default createStore({
         alert(err.message.toUpperCase())
       }
     },
-
+    //Filtrar manuais com base nos departamentos
     async filtrarDepartamento(context, payload) {
       try {
         const { id, tipo } = payload
@@ -68,7 +76,7 @@ export default createStore({
         alert(err.message.toUpperCase())
       }
     },
-
+    //Selecionar manual por ID
     async selectPost(context, payload) {
       try {
         const { data } = await axios.get(`/manuais/${payload}`)
@@ -79,6 +87,11 @@ export default createStore({
       } catch (err) {
         alert(err.message.toUpperCase())
       }
+    },
+    //Limpar memoria do State post
+    limparEstado(context) {
+      const payload = ''
+      context.commit('CLEAR_POST_MEMORY', payload)
     }
   },
   getters: {
