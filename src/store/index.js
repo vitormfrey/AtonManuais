@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from '../utils/axios'
+import swal from 'sweetalert'
 export default createStore({
   state: {
     posts: [],
@@ -44,7 +45,7 @@ export default createStore({
         }
         context.commit('SET_POSTS', data)
       } catch (err) {
-        alert(err.message.toUpperCase())
+        swal('Oops!', err.message, 'error')
       }
     },
     //Puxar todos os departamentos
@@ -56,7 +57,7 @@ export default createStore({
         }
         context.commit('SET_DEPARTAMENTO', data)
       } catch (err) {
-        alert(err.message.toUpperCase())
+        swal('Oops!', err.message, 'error')
       }
     },
     //Filtrar manuais com base nos departamentos
@@ -73,7 +74,7 @@ export default createStore({
         }
         context.commit('FILTER_DEPARTMENT', data)
       } catch (err) {
-        alert(err.message.toUpperCase())
+        swal('Oops!', err.message, 'error')
       }
     },
     //Selecionar manual por ID
@@ -85,7 +86,7 @@ export default createStore({
         }
         context.commit('SET_POST', data)
       } catch (err) {
-        alert(err.message.toUpperCase())
+        swal('Oops!', err.message, 'error')
       }
     },
     //Limpar memoria do State post
