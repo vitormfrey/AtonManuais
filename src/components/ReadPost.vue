@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import marked from 'marked'
+//import marked from 'marked'
+import markedIt from 'marked-it-core'
 import axios from '../utils/axios'
 import swal from 'sweetalert'
 
@@ -38,7 +39,8 @@ export default {
       try {
         const { data } = await axios.get(`/manuais/${this.$route.params.id}`)
         this.post = data
-        this.post.conteudo = marked(data.conteudo)
+        const html = markedIt.generate(data.conteudo)
+        this.post.conteudo = html.html.text
         this.departamento = data.departamentos.tipo
         return this.post
       } catch (err) {
@@ -56,7 +58,8 @@ export default {
       return this.$store.getters.$selectPost
     },
     $getPostContent() {
-      return marked(this.$store.getters.$getPostContent)
+      const html = markedIt.generate(this.$store.getters.$getPostContent)
+      return html.html.text
     }
   }
 }
