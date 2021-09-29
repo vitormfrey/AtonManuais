@@ -19,6 +19,8 @@
 <script>
 import marked from 'marked'
 import axios from '../utils/axios'
+import swal from 'sweetalert'
+
 export default {
   name: 'ReadPost',
   props: {},
@@ -41,7 +43,11 @@ export default {
         return this.post
       } catch (err) {
         //Tratar posteriormente
-        alert(`O id: ${this.$route.params.id} não é válido ou não existe!`)
+        swal(
+          'Oops!',
+          `O id: ${this.$route.params.id} não é válido ou não existe!`,
+          'error'
+        )
       }
     }
   },
