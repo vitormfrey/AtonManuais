@@ -88,4 +88,13 @@ export default {
   font-family: 'Montserrat', sans-serif;
   text-align: left;
 }
+@media screen and (max-width: 650px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+    grid-gap: 3.75rem;
+    justify-content: center;
+  }
+}
 </style>

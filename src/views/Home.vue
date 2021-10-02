@@ -41,5 +41,23 @@ export default {
 .conteudo {
   grid-area: conteudo;
   padding-top: 30px;
+  /* display: none; */
+}
+@media screen and (max-width: 649px) {
+  .home {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-gap: 30px;
+    grid-template-areas:
+      'sidebar sidebar'
+      'conteudo conteudo';
+  }
+  .Titulo {
+    display: none;
+  }
+  .conteudo {
+    padding: 20px;
+  }
 }
 </style>
