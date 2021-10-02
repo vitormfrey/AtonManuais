@@ -34,4 +34,16 @@ export default {
 .ReadPost {
   grid-area: conteudo;
 }
+
+@media screen and (max-width: 650px) {
+  .post {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-gap: 0.5rem;
+    grid-template-areas:
+      'sidebar sidebar'
+      'conteudo conteudo';
+  }
+}
 </style>

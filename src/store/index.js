@@ -66,7 +66,7 @@ export default createStore({
         const { id, tipo } = payload
 
         const { data } = await axios.get(`/manuais?departamentos=${id}`)
-        // console.log(`${data} e ${payload}`)
+
         if (data.length === 0) {
           throw new Error(
             `Não foi possível encontrar nenhum manual do departamento: ${tipo}`

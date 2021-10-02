@@ -1,5 +1,5 @@
 <template>
-  <div class="ReadPost my-5" v-if="Object.keys($selectPost).length != 0">
+  <div class="ReadPost my-5 p-3" v-if="Object.keys($selectPost).length != 0">
     <h1 class="post-titulo text-4xl cursor-auto">{{ $selectPost.titulo }}</h1>
     <h3 class="post-departamento text-sm cursor-auto">
       Departamento: {{ $selectPost.departamentos.tipo }}
@@ -7,7 +7,7 @@
     <section class="body-conteudo" v-html="$getPostContent"></section>
   </div>
 
-  <div class="ReadPost my-5" v-else>
+  <div class="ReadPost my-5 p-3" v-else>
     <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
     <h3 class="post-departamento text-sm cursor-auto">
       Departamento: {{ departamento }}
@@ -44,7 +44,6 @@ export default {
         this.departamento = data.departamentos.tipo
         return this.post
       } catch (err) {
-        //Tratar posteriormente
         swal(
           'Oops!',
           `O id: ${this.$route.params.id} não é válido ou não existe!`,
@@ -97,5 +96,31 @@ li {
   font-weight: normal;
   font-size: 18px;
   line-height: 30px;
+}
+
+@media screen and (max-width: 650px) {
+  .ReadPost {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 40px 20px 1fr;
+    grid-gap: 1rem;
+  }
+  .post-titulo {
+    font-size: 1.5em;
+  }
+  .body-conteudo {
+    display: grid;
+
+    grid-gap: 1rem;
+    grid-auto-flow: row;
+  }
+
+  .lista {
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-gap: 1.5rem;
+    grid-auto-flow: row;
+  }
 }
 </style>
