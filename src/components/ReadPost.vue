@@ -124,7 +124,6 @@ export default {
     grid-auto-flow: row;
   }
   .lista {
-    grid-auto-rows: 1fr;
     grid-auto-flow: row;
   }
 }
