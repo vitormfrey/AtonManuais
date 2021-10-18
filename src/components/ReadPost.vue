@@ -89,13 +89,22 @@ export default {
   font-size: 24px;
   color: #003561;
 }
-.body-conteudo p,
-li {
+
+.lista {
+  display: grid;
+  grid-gap: 1.5rem;
+  word-break: break-word;
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 30px;
+}
+.lista a {
+  color: #0676d1;
+}
+.lista img {
+  border: 2px solid #ccc;
 }
 
 @media screen and (max-width: 650px) {
@@ -111,15 +120,11 @@ li {
   }
   .body-conteudo {
     display: grid;
-
     grid-gap: 1rem;
     grid-auto-flow: row;
   }
-
   .lista {
-    display: grid;
     grid-auto-rows: 1fr;
-    grid-gap: 1.5rem;
     grid-auto-flow: row;
   }
 }
