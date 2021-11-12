@@ -1,5 +1,7 @@
 <template>
-  <div class="container Post">
+  <Loading v-show="loading" />
+
+  <div v-if="!loading" class="container Post">
     <div v-for="post in $allPosts" :key="post.id">
       <article
         class="
@@ -22,28 +24,38 @@
         </h3>
         <p class="post-descricao text-sm cursor-auto">{{ post.descricao }}</p>
         <p class="call-to-action text-sm">Ler mais...</p>
+        <!-- <p>Publicado em {{ post.published_at }}</p> -->
       </article>
     </div>
   </div>
 </template>
 
 <script>
+import Loading from './Loading.vue'
 export default {
   name: 'HelloWorld',
+  components: {
+    Loading
+  },
   props: {},
   data() {
     return {
-      posts: []
+      posts: [],
+      loading: true
     }
   },
   created() {
-    this.$store.dispatch('fetchPosts')
+    this.fetchPosts()
   },
   methods: {
     pegarPost(e) {
       const id = e.id
-      this.$router.push({ name: 'post', params: { id: id } })
+      this.$router.push({ name: 'Post', params: { id: id } })
       this.$store.dispatch('selectPost', id)
+    },
+    async fetchPosts() {
+      await this.$store.dispatch('fetchPosts')
+      this.loading = false
     }
   },
   computed: {
