@@ -92,7 +92,7 @@ export default {
       if (this.$route.path === '/') {
         this.$store.dispatch(this.manuais)
       } else {
-        console.log(this.$route.path)
+        // console.log(this.$route.path)
         this.$router.push('/')
         this.$store.dispatch('limparEstado')
       }

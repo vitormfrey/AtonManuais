@@ -36,7 +36,7 @@ export const manuais = {
     async fetchPosts(context) {
       try {
         const { data } = await axios.get('/manuais')
-        console.log(data)
+        // console.log(data)
         if (data.length === 0) {
           throw new Error(
             'Api não encontrou nenhum manual, volte mais tarde 😉'

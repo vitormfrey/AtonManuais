@@ -51,7 +51,8 @@
           Login
         </button>
       </form>
-      <span><a href="/signup" class="signup">Registre-se</a></span>
+      <span><p class="singup">Solicite para o administrador</p></span>
+      <!-- <span><a href="/" class="signup">Registre-se</a></span> -->
     </div>
   </div>
 </template>
