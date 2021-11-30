@@ -1,29 +1,32 @@
 <template>
-  <div class="post">
+  <div class="home">
     <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
-    <ReadPost />
+    <div class="conteudo">
+      <Post
+        manuais="getManuaisIn"
+        customRoute="ManuaisRead"
+        getManual="getManualInById"
+      />
+    </div>
   </div>
 </template>
+
 <script>
-import ReadPost from '@/components/ReadPost.vue'
 import BarraLateral from '@/components/BarraLateral.vue'
+import Post from '@/components/Post.vue'
 export default {
-  name: 'Post',
   components: {
-    ReadPost,
-    BarraLateral
-  },
-  created() {
-    document.title = 'AtonSystems'
+    BarraLateral,
+    Post
   }
 }
 </script>
 
 <style scoped>
-.post {
+.home {
   display: grid;
-  grid-template-columns: 15vw auto;
-  grid-gap: 3.75rem;
+  grid-template-columns: 15vw 1fr;
+  grid-gap: 150px;
   grid-template-areas:
     'sidebar conteudo'
     'sidebar conteudo';
@@ -31,19 +34,26 @@ export default {
 .BarraLateral {
   grid-area: sidebar;
 }
-.ReadPost {
+.conteudo {
   grid-area: conteudo;
+  padding-top: 30px;
+  /* display: none; */
 }
-
-@media screen and (max-width: 650px) {
-  .post {
+@media screen and (max-width: 649px) {
+  .home {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr;
-    grid-gap: 0.5rem;
+    grid-gap: 30px;
     grid-template-areas:
       'sidebar sidebar'
       'conteudo conteudo';
+  }
+  .Titulo {
+    display: none;
+  }
+  .conteudo {
+    padding: 20px;
   }
 }
 </style>

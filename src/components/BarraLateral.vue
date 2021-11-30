@@ -2,14 +2,28 @@
   <div class="barra-container BarraLateral">
     <div class="h-full barra-lateral-sm">
       <h3 class="text-xl categoria">Departamentos</h3>
+
+      <span class="login">
+        <router-link to="/login" v-if="verificarRota()">Login</router-link>
+        <router-link to="/" v-else @click.prevent="logout()"
+          >Logout</router-link
+        >
+      </span>
+
       <ul class="barra-inside h-full">
         <li
           class="transition duration-700 ease-in-out hover:bg-white w-full"
           @click="mostrarDepartamentos()"
         >
-          <p class="text-lg hover:text-blue-700">Todos</p>
+          <p class="text-lg hover:text-blue-700" v-if="verificarRota()">
+            Todos
+          </p>
+          <router-link to="/" class="text-lg hover:text-blue-700" v-else
+            >Manuais Cliente</router-link
+          >
         </li>
         <li
+          v-show="verificarRota()"
           class="transition duration-700 ease-in-out hover:bg-white w-full"
           v-for="departamento in $getDepartamentos"
           :key="departamento.id"
@@ -50,6 +64,7 @@
           {{ departamento.tipo }}
         </option>
       </select>
+      <!-- Responsividade fim-->
     </div>
   </div>
 </template>
@@ -57,9 +72,12 @@
 <script>
 export default {
   name: 'BarraLateral',
-  props: {},
+  props: {
+    departamento: String,
+    manuais: String
+  },
   created() {
-    this.$store.dispatch('fetchDepartamento')
+    this.$store.dispatch(this.departamento)
   },
   methods: {
     filtrarDepartamento(event) {
@@ -70,13 +88,23 @@ export default {
         this.$store.dispatch('filtrarDepartamento', e)
       }
     },
-
     mostrarDepartamentos() {
       if (this.$route.path === '/') {
-        this.$store.dispatch('fetchPosts')
+        this.$store.dispatch(this.manuais)
       } else {
+        console.log(this.$route.path)
         this.$router.push('/')
         this.$store.dispatch('limparEstado')
+      }
+    },
+    logout() {
+      this.$store.dispatch('logout')
+    },
+    verificarRota() {
+      if (window.location.hash.substring(0, 17) != '#/interno/manuais') {
+        return true
+      } else {
+        return false
       }
     }
   },
@@ -120,6 +148,15 @@ export default {
   cursor: pointer;
   text-align: center;
 }
+.login {
+  display: block;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  color: #fff !important;
+  cursor: pointer;
+}
 @media screen and (max-width: 650px) {
   .barra-container {
     position: inherit;
@@ -146,6 +183,9 @@ export default {
 
   .barra-inside,
   .categoria {
+    display: none;
+  }
+  .login {
     display: none;
   }
 }

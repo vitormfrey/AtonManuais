@@ -37,7 +37,11 @@ export default {
   components: {
     Loading
   },
-  props: {},
+  props: {
+    manuais: { type: String, default: 'fetchPosts' },
+    customRoute: { type: String, default: 'Post' },
+    getManual: { type: String, default: 'selectPost' }
+  },
   data() {
     return {
       posts: [],
@@ -50,17 +54,22 @@ export default {
   methods: {
     pegarPost(e) {
       const id = e.id
-      this.$router.push({ name: 'Post', params: { id: id } })
-      this.$store.dispatch('selectPost', id)
+      this.$router.push({ name: this.customRoute, params: { id: id } })
+      this.$store.dispatch(this.getManual, id)
     },
     async fetchPosts() {
-      await this.$store.dispatch('fetchPosts')
+      await this.$store.dispatch(this.manuais)
       this.loading = false
     }
   },
   computed: {
     $allPosts() {
-      return this.$store.getters.$allPosts
+      //Verificar qual manual precisa trazer, Interno ou Cliente
+      const manual =
+        this.manuais != 'fetchPosts'
+          ? this.$store.getters.$getManuaisIn
+          : this.$store.getters.$allPosts
+      return manual
     }
   }
 }

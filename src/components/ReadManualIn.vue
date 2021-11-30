@@ -1,19 +1,10 @@
 <template>
-  <div class="ReadPost my-5 p-3" v-if="Object.keys($selectPost).length != 0">
-    <h1 class="post-titulo text-4xl cursor-auto">{{ $selectPost.titulo }}</h1>
-    <h3 class="post-departamento text-sm cursor-auto">
-      Departamento: {{ $selectPost.departamentos.tipo }}
-    </h3>
-    <section class="body-conteudo" v-html="$getPostContent"></section>
-  </div>
-
-  <div class="ReadPost my-5 p-3" v-else>
-    <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
+  <div class="ReadPost my-5 p-3">
+    <h1 class="post-titulo text-4xl cursor-auto">{{ manual.titulo }}</h1>
     <h3 class="post-departamento text-sm cursor-auto">
       Departamento: {{ departamento }}
     </h3>
-    <section class="body-conteudo" v-html="post.conteudo"></section>
-    <p>Última alteração: {{ post.updated_at }}</p>
+    <section class="body-conteudo" v-html="manual.conteudo"></section>
   </div>
 </template>
 
@@ -27,39 +18,36 @@ export default {
 
   data() {
     return {
-      post: {},
+      manual: {},
       departamento: ''
     }
   },
-  created() {
-    this.getPost()
+  async created() {
+    await this.getManualIn()
   },
   methods: {
-    async getPost() {
+    async getManualIn() {
+      const API_KEY = this.$store.getters.$getToken
       try {
-        const { data } = await axios.get(`/manuais/${this.$route.params.id}`)
-        this.post = data
+        const { data } = await axios.get(
+          `/manuais-internos/${this.$route.params.id}`,
+          {
+            headers: { Authorization: 'Bearer ' + API_KEY }
+          }
+        )
+        this.manual = data
         const html = markedIt.generate(data.conteudo)
-        this.post.conteudo = html.html.text
+        this.manual.conteudo = html.html.text
         this.departamento = data.departamentos.tipo
-        return this.post
+        return this.manual
       } catch (err) {
         swal({
           title: 'Oops!',
           text: `O id: ${this.$route.params.id} não é válido ou não existe!`,
           icon: 'error',
           buttons: { success: 'Ok!' }
-        }).then(() => this.$router.push('/'))
+        }).then(() => this.$router.push('/interno/manual'))
       }
-    }
-  },
-  computed: {
-    $selectPost() {
-      return this.$store.getters.$selectPost
-    },
-    $getPostContent() {
-      const html = markedIt.generate(this.$store.getters.$getPostContent)
-      return html.html.text
     }
   }
 }

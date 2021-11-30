@@ -1,20 +1,17 @@
 <template>
   <div class="post">
     <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
-    <ReadPost />
+    <ReadManualIn />
   </div>
 </template>
+
 <script>
-import ReadPost from '@/components/ReadPost.vue'
 import BarraLateral from '@/components/BarraLateral.vue'
+import ReadManualIn from '@/components/ReadManualIn.vue'
 export default {
-  name: 'Post',
   components: {
-    ReadPost,
-    BarraLateral
-  },
-  created() {
-    document.title = 'AtonSystems'
+    BarraLateral,
+    ReadManualIn
   }
 }
 </script>

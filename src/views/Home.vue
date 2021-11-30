@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <BarraLateral />
+    <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
     <div class="conteudo">
       <Titulo />
       <Post />
