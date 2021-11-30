@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     async getManualIn() {
-      const API_KEY = this.$store.getters.$getToken
+      const API_KEY = JSON.parse(localStorage.getItem('token'))
       try {
         const { data } = await axios.get(
           `/manuais-internos/${this.$route.params.id}`,
