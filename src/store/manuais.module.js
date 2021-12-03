@@ -35,7 +35,7 @@ export const manuais = {
     //Puxar todos os manuais
     async fetchPosts(context) {
       try {
-        const { data } = await axios.get('/manuais')
+        const { data } = await axios.get('/manuais?_sort=id:desc')
         // console.log(data)
         if (data.length === 0) {
           throw new Error(

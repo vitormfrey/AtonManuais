@@ -1,25 +1,24 @@
 <template>
   <div class="home">
-    <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
+    <template-sidebar />
     <div class="conteudo">
-      <Titulo />
-      <Post />
+      <template-title />
+      <template-manual-card />
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Post from '@/components/Post.vue'
 import BarraLateral from '@/components/BarraLateral.vue'
 import Titulo from '@/components/Titulo.vue'
+import ManualCardTemplate from '../components/ManualCard/template/ManualTemplateView.vue'
 
 export default {
   name: 'Home',
   components: {
-    Post,
-    BarraLateral,
-    Titulo
+    'template-manual-card': ManualCardTemplate,
+    'template-title': Titulo,
+    'template-sidebar': BarraLateral
   },
   created() {
     document.title = 'AtonSystems'
