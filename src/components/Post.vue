@@ -1,5 +1,6 @@
 <template>
-  <Loading v-show="loading" />
+  <div></div>
+  <!-- <Loading v-show="loading" />
 
   <div v-if="!loading" class="container Post">
     <div v-for="post in $allPosts" :key="post.id">
@@ -24,18 +25,18 @@
         </h3>
         <p class="post-descricao text-sm cursor-auto">{{ post.descricao }}</p>
         <p class="call-to-action text-sm">Ler mais...</p>
-        <!-- <p>Publicado em {{ post.published_at }}</p> -->
-      </article>
-    </div>
-  </div>
+        <p>Publicado em {{ post.published_at }}</p> -->
+  <!-- </article> -->
+  <!-- </div> -->
+  <!-- </div>  -->
 </template>
 
 <script>
-import Loading from './Loading.vue'
+// import Loading from './Loading.vue'
 export default {
   name: 'HelloWorld',
   components: {
-    Loading
+    // Loading
   },
   props: {
     manuais: { type: String, default: 'fetchPosts' },

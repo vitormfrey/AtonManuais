@@ -1,6 +1,11 @@
 <template>
   <div class="post">
-    <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
+    <BarraLateral
+      departamento="getDepartamentosIn"
+      manuais="getManuaisIn"
+      filtroDepartamento="filterDepartamentoIn"
+      getterDepartamento="$getDepartamentosIn"
+    />
     <ReadManualIn />
   </div>
 </template>

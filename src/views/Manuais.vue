@@ -1,11 +1,16 @@
 <template>
   <div class="home">
-    <BarraLateral departamento="fetchDepartamento" manuais="fetchPosts" />
+    <template-sidebar
+      departamento="getDepartamentosIn"
+      manuais="getManuaisIn"
+      filtroDepartamento="filterDepartamentoIn"
+      getterDepartamento="$getDepartamentosIn"
+    />
     <div class="conteudo">
-      <Post
+      <template-manual-card
         manuais="getManuaisIn"
-        customRoute="ManuaisRead"
-        getManual="getManualInById"
+        customRouteIn="ManuaisRead"
+        getManualByIdIn="getManualInById"
       />
     </div>
   </div>
@@ -13,11 +18,12 @@
 
 <script>
 import BarraLateral from '@/components/BarraLateral.vue'
-import Post from '@/components/Post.vue'
+import ManualCardTemplate from '@/components/ManualCard/template/ManualTemplateView.vue'
+
 export default {
   components: {
-    BarraLateral,
-    Post
+    'template-sidebar': BarraLateral,
+    'template-manual-card': ManualCardTemplate
   }
 }
 </script>
