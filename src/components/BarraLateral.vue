@@ -2,6 +2,7 @@
   <div class="sidebar-container BarraLateral">
     <div class="h-full p-2 sideBar-sm sideBar">
       <h3 class="text-xl categoria">Departamentos</h3>
+      <app-search :searchIn="searchManual" :getManuais="manuais" />
       <app-call-to-action-manualIn />
       <app-departamento-list
         :getDepartamento="departamento"
@@ -18,18 +19,21 @@
 import Login from './Login/index.vue'
 import ManualInButton from './ManualInButton/index.vue'
 import DepartamentoList from './DepartamentoList/index.vue'
+import Search from './Search.vue'
 export default {
   name: 'BarraLateral',
   components: {
     'app-login': Login,
     'app-call-to-action-manualIn': ManualInButton,
-    'app-departamento-list': DepartamentoList
+    'app-departamento-list': DepartamentoList,
+    'app-search': Search
   },
   props: {
     departamento: { type: String },
     manuais: { type: String },
     filtroDepartamento: { type: String },
-    getterDepartamento: { type: String }
+    getterDepartamento: { type: String },
+    searchManual: { type: String }
   }
 }
 </script>

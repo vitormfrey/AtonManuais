@@ -5,6 +5,7 @@
       manuais="getManuaisIn"
       filtroDepartamento="filterDepartamentoIn"
       getterDepartamento="$getDepartamentosIn"
+      searchManual="searchInManual"
     />
     <div class="conteudo">
       <template-manual-card

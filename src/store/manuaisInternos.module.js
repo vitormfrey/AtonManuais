@@ -3,7 +3,7 @@ import axios from '../utils/axios'
 import { authHeader } from '../utils/auth.header'
 export const manuaisInternos = {
   state: {
-    manuais: [],
+    manuais: [''],
     departamentosInternos: [],
     manual: {},
     manualConteudo: ''
@@ -101,6 +101,34 @@ export const manuaisInternos = {
         context.commit('FILTER_DEPARTMENT_IN', data)
       } catch (err) {
         swal('Oops!', err.message, 'error')
+      }
+    },
+    async searchInManual({ commit, state }, payload) {
+      //Verifico se o payload é maior que 2 pra começar a pesquisar
+      if (payload.split('').length > 2) {
+        let pesquisa = ''
+        //Percorre o array de manuais e faz o match
+        for (let i = 0; i < state.manuais.length; i++) {
+          pesquisa = await state.manuais.filter((e) => {
+            return payload
+              .toLowerCase()
+              .split(' ')
+              .every((v) => e.titulo.toLowerCase().includes(v))
+          })
+          //Verifica se o Match retornou algum resultado e faz o commit
+          if (pesquisa.length > 0) {
+            commit('SET_MANUAIS_IN', pesquisa)
+          } else {
+            //Caso não existir, informa o cliente que não foi encontrado
+            return swal(
+              'Oops!',
+              `Não foi possível encontrar nenhum manual sobre ${payload}`,
+              'error'
+            )
+          }
+        }
+      } else {
+        return this.posts
       }
     }
   },
