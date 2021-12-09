@@ -43,7 +43,7 @@ export default {
 .sidebar-container {
   position: fixed;
   height: 100%;
-  width: 15vw;
+  width: 18rem;
   background: #003561;
 }
 .categoria {
