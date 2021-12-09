@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 input {
-  width: 200px;
+  width: 15vw;
   height: 50px;
   justify-self: center;
 }
