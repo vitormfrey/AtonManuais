@@ -4,6 +4,7 @@
     v-model="searchQuery"
     placeholder="Pesquisa um manual..."
     class="rounded-sm focus:outline-none focus:ring focus:border-blue-300 p-2"
+    id="Search"
   />
 </template>
 
@@ -52,7 +53,7 @@ export default {
 
 <style scoped>
 input {
-  width: 15vw;
+  max-width: 15rem;
   height: 50px;
   justify-self: center;
 }
