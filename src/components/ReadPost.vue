@@ -107,6 +107,10 @@ export default {
 .lista img {
   border: 2px solid #ccc;
 }
+.email {
+  color: #0676d1;
+  cursor: copy;
+}
 
 @media screen and (max-width: 650px) {
   .ReadPost {

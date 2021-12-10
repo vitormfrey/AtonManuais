@@ -83,7 +83,8 @@ export default {
   }
   .Login,
   .ManualInButton,
-  .categoria {
+  .categoria,
+  #Search {
     display: none;
   }
 }
