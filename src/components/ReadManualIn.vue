@@ -104,7 +104,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 20px 1fr;
+    grid-template-rows: auto 20px 1fr;
     grid-gap: 1rem;
   }
   .post-titulo {

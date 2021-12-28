@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <template-sidebar />
+  <div class="container-home">
+    <template-header />
     <div class="conteudo">
       <template-title />
       <template-manual-card />
@@ -9,54 +9,45 @@
 </template>
 
 <script>
-import BarraLateral from '@/components/BarraLateral.vue'
 import Titulo from '@/components/Titulo.vue'
+import Header from '@/components/Header'
 import ManualCardTemplate from '../components/ManualCard/template/ManualTemplateView.vue'
 
 export default {
   name: 'Home',
   components: {
-    'template-manual-card': ManualCardTemplate,
+    'template-header': Header,
     'template-title': Titulo,
-    'template-sidebar': BarraLateral
-  },
-  created() {
-    document.title = 'AtonSystems'
+    'template-manual-card': ManualCardTemplate
   }
 }
 </script>
 <style scoped>
-.home {
+.container-home {
   display: grid;
-  grid-template-columns: 15vw 1fr;
-  grid-gap: 150px;
-  grid-template-areas:
-    'sidebar conteudo'
-    'sidebar conteudo';
-}
-.BarraLateral {
-  grid-area: sidebar;
 }
 .conteudo {
-  grid-area: conteudo;
-  padding-top: 30px;
-  /* display: none; */
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 1rem;
+  padding: 0px 60px;
 }
+.Titulo {
+  margin-top: 20px;
+}
+
 @media screen and (max-width: 649px) {
   .home {
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
-    grid-gap: 30px;
-    grid-template-areas:
-      'sidebar sidebar'
-      'conteudo conteudo';
+    justify-content: center;
+  }
+  .conteudo {
+    padding: 0px 20px;
+    margin-top: 60px;
   }
   .Titulo {
     display: none;
-  }
-  .conteudo {
-    padding: 20px;
   }
 }
 </style>

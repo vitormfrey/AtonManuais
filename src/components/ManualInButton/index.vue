@@ -1,9 +1,17 @@
 <template>
   <span class="ManualInButton">
-    <router-link to="/interno/manuais" v-if="verificarPagina()"
+    <router-link
+      to="/interno/manuais"
+      v-if="verificarPagina()"
+      class="text-gray-700 block px-4 py-2 text-sm"
       >Manuais Internos</router-link
     >
-    <router-link to="/" v-if="backExterno()">Manuais Clientes</router-link>
+    <router-link
+      to="/"
+      v-if="backExterno()"
+      class="text-gray-700 block px-4 py-2 text-sm"
+      >Manuais Clientes</router-link
+    >
   </span>
 </template>
 
@@ -46,12 +54,9 @@ export default {
 
 <style scoped>
 .ManualInButton {
-  display: block;
-  text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold !important;
   text-transform: uppercase !important;
-  color: #fff !important;
   cursor: pointer;
 }
 </style>

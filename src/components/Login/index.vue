@@ -4,9 +4,16 @@
       to="/login"
       v-if="verificarRota()"
       :class="{ active: isActive }"
+      class="text-gray-700 block px-4 py-2 text-sm"
       >Login</router-link
     >
-    <p v-else @click.prevent="logout()">Logout</p>
+    <p
+      v-else
+      @click.prevent="logout()"
+      class="text-gray-700 block px-4 py-2 text-sm"
+    >
+      Logout
+    </p>
   </span>
 </template>
 
@@ -55,12 +62,9 @@ export default {
 
 <style scoped>
 .Login {
-  display: block;
-  text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold !important;
   text-transform: uppercase !important;
-  color: #fff !important;
   cursor: pointer;
 }
 .active {
