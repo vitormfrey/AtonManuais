@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <!-- <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link> -->
-    <router-view />
-  </div>
-
-  <!-- <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view /> -->
+  <router-view />
 </template>
+<script>
+export default {
+  created() {
+    document.title = 'AtonSystems'
+  }
+}
+</script>
+
 <style scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

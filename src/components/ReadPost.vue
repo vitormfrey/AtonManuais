@@ -13,7 +13,6 @@
       Departamento: {{ departamento }}
     </h3>
     <section class="body-conteudo" v-html="post.conteudo"></section>
-    <p>Última alteração: {{ post.updated_at }}</p>
   </div>
 </template>
 
@@ -117,7 +116,7 @@ export default {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 40px 20px 1fr;
+    grid-template-rows: auto 20px 1fr;
     grid-gap: 1rem;
   }
   .post-titulo {

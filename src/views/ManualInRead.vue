@@ -1,51 +1,47 @@
 <template>
-  <div class="post">
-    <BarraLateral
+  <div class="container-page">
+    <template-header
       departamento="getDepartamentosIn"
       manuais="getManuaisIn"
       filtroDepartamento="filterDepartamentoIn"
       getterDepartamento="$getDepartamentosIn"
+      searchManual="searchInManual"
     />
-    <ReadManualIn />
+    <div class="conteudo">
+      <ReadManualIn />
+    </div>
   </div>
 </template>
-
 <script>
-import BarraLateral from '@/components/BarraLateral.vue'
+import Header from '@/components/Header'
 import ReadManualIn from '@/components/ReadManualIn.vue'
 export default {
   components: {
-    BarraLateral,
+    'template-header': Header,
     ReadManualIn
   }
 }
 </script>
 
 <style scoped>
-.post {
+.container-page {
   display: grid;
-  grid-template-columns: 15vw auto;
-  grid-gap: 3.75rem;
-  grid-template-areas:
-    'sidebar conteudo'
-    'sidebar conteudo';
 }
-.BarraLateral {
-  grid-area: sidebar;
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 1rem;
+  padding: 0px 60px;
+  margin-top: 60px;
 }
-.ReadPost {
-  grid-area: conteudo;
-}
-
 @media screen and (max-width: 650px) {
-  .post {
+  .conteudo {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
-    grid-gap: 0.5rem;
-    grid-template-areas:
-      'sidebar sidebar'
-      'conteudo conteudo';
+    justify-items: center;
+    padding: 0px 20px;
+    margin-top: 20px;
   }
 }
 </style>

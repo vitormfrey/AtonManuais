@@ -1,61 +1,79 @@
 <template>
-  <ul class="h-full Sidebar" id="Sidebar-inside">
-    <li
-      class="transition duration-700 ease-in-out hover:bg-white w-full"
-      @click="clearFilterDepartamentos()"
+  <div class="relative inline-block text-left" id="DropDown">
+    <div>
+      <button
+        @click="dropdownOpen = !dropdownOpen"
+        class="
+          inline-flex
+          justify-center
+          w-full
+          rounded
+          border border-gray-300
+          shadow-sm
+          px-4
+          py-2
+          bg-white
+          text-sm
+          font-medium
+          text-gray-700
+          hover:bg-gray-50
+          focus:outline-none
+          focus:ring-2
+          focus:ring-offset-2
+          focus:ring-offset-gray-100
+          focus:ring-indigo-500
+          btnText
+        "
+      >
+        {{ itemSelecionado }}
+        <svg
+          class="-mr-1 ml-2 h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+    <div
+      v-show="dropdownOpen"
+      class="
+        origin-top-right
+        absolute
+        right-0
+        mt-2
+        w-56
+        rounded
+        shadow-lg
+        bg-white
+        ring-1 ring-black ring-opacity-5
+        focus:outline-none
+      "
+      role="menu"
+      aria-orientation="vertical"
+      aria-labelledby="menu-button"
+      tabindex="-1"
     >
-      <!-- Limpa o filtro departamento -->
-      <p class="text-lg hover:text-blue-700">Todos</p>
-    </li>
-    <!-- Mostra os departamentos e filtra por departamento selecionado  -->
-    <li
-      class="transition duration-700 ease-in-out hover:bg-white w-full"
-      v-for="departamentoOut in $getDepartamentos"
-      :key="departamentoOut.id"
-      @click="filterManualByDepartamento(departamentoOut)"
-    >
-      <p class="text-lg hover:text-blue-700">
+      <div class="p-2 btnText" role="none" @click="clearFilterDepartamentos()">
+        Todos
+      </div>
+      <div
+        class="p-2 btnText z-40"
+        role="none"
+        v-for="departamentoOut in $getDepartamentos"
+        :key="departamentoOut.id"
+        @click="filterManualByDepartamento(departamentoOut)"
+      >
         {{ departamentoOut.tipo }}
-      </p>
-    </li>
-  </ul>
-  <!-- Responsividade -->
-  <h3
-    class="text-xl titulo cursor-pointer"
-    :class="{ active: isActive }"
-    id="Home"
-    @click="clearFilterDepartamentos()"
-  >
-    AtonSystems
-  </h3>
-  <select
-    @change="filterManualByDepartamento($event.target.value)"
-    class="
-      block
-      appearance-none
-      bg-white
-      border border-gray-400
-      hover:border-gray-500
-      px-4
-      py-2
-      pr-8
-      rounded
-      shadow
-      leading-tight
-      focus:outline-none focus:shadow-outline
-    "
-    :class="{ active: isActive }"
-  >
-    <option disabled selected class="teste">Departamento</option>
-    <option
-      v-for="departamento in $getDepartamentos"
-      :key="departamento.id"
-      :value="JSON.stringify(departamento)"
-    >
-      {{ departamento.tipo }}
-    </option>
-  </select>
-  <!-- Responsividade fim-->
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -70,11 +88,11 @@ export default {
   },
   data() {
     return {
-      isActive: true
+      dropdownOpen: false,
+      itemSelecionado: 'Departamentos'
     }
   },
   created() {
-    this.getWidthPage()
     this.$store.dispatch(this.getDepartamento)
   },
   methods: {
@@ -84,10 +102,14 @@ export default {
       switch (path) {
         case '/':
           this.$store.dispatch(this.getManuais)
+          this.dropdownOpen = false
+          this.itemSelecionado = 'Departamentos'
           break
         case '/interno/manuais':
           if (this.$route.path === path) this.$store.dispatch(this.getManuais)
           else this.$router.push(`${path}`)
+          this.dropdownOpen = false
+          this.itemSelecionado = 'Departamentos'
           break
         default:
           this.$router.push('/')
@@ -98,16 +120,11 @@ export default {
     filterManualByDepartamento(event) {
       if (typeof event === 'object') {
         this.$store.dispatch(this.filtro, event)
+        this.dropdownOpen = false
+        this.itemSelecionado = event.tipo
       } else {
         this.$router.push('/')
         this.$store.dispatch('limparEstado')
-      }
-    },
-    getWidthPage() {
-      const view =
-        window.screen.availWidth - (window.outerWidth - window.innerWidth)
-      if (view <= 650) {
-        this.isActive = false
       }
     }
   },
@@ -124,38 +141,12 @@ export default {
 </script>
 
 <style scoped>
-#Sidebar-inside {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 30px;
-  justify-items: center;
-  align-items: center;
-}
-#Sidebar-inside li {
-  font-family: 'Montserrat', sans-serif !important;
+.btnText {
+  font-family: 'Montserrat', sans-serif;
   font-weight: bold !important;
   text-transform: uppercase !important;
-  color: #fff !important;
   cursor: pointer;
+  color: #003561;
   text-align: center;
-}
-.active {
-  display: none;
-}
-
-@media screen and (max-width: 650px) {
-  .titulo {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #fff;
-    align-self: center;
-  }
-  .titulo:hover {
-    color: #f5f5f5;
-  }
-  #Sidebar-inside {
-    display: none;
-  }
 }
 </style>

@@ -1,49 +1,42 @@
 <template>
-  <div class="post">
-    <BarraLateral />
-    <ReadPost />
+  <div class="container-page">
+    <template-header></template-header>
+    <div class="conteudo">
+      <ReadPost />
+    </div>
   </div>
 </template>
 <script>
 import ReadPost from '@/components/ReadPost.vue'
-import BarraLateral from '@/components/BarraLateral.vue'
+import Header from '@/components/Header'
 export default {
   name: 'Post',
   components: {
     ReadPost,
-    BarraLateral
-  },
-  created() {
-    document.title = 'AtonSystems'
+    'template-header': Header
   }
 }
 </script>
 
 <style scoped>
-.post {
+.container-page {
   display: grid;
-  grid-template-columns: 15vw auto;
-  grid-gap: 3.75rem;
-  grid-template-areas:
-    'sidebar conteudo'
-    'sidebar conteudo';
 }
-.BarraLateral {
-  grid-area: sidebar;
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 1rem;
+  padding: 0px 60px;
+  margin-top: 60px;
 }
-.ReadPost {
-  grid-area: conteudo;
-}
-
 @media screen and (max-width: 650px) {
-  .post {
+  .conteudo {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 60px 1fr;
-    grid-gap: 0.5rem;
-    grid-template-areas:
-      'sidebar sidebar'
-      'conteudo conteudo';
+    justify-items: center;
+    padding: 0px 20px;
+    margin-top: 20px;
   }
 }
 </style>
