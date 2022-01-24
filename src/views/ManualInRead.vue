@@ -8,17 +8,20 @@
       searchManual="searchInManual"
     />
     <div class="conteudo">
+      <template-back-page />
       <ReadManualIn />
     </div>
   </div>
 </template>
 <script>
 import Header from '@/components/Header'
+import BackPageAnchor from '@/components/BackPageAnchor'
 import ReadManualIn from '@/components/ReadManualIn.vue'
 export default {
   components: {
     'template-header': Header,
-    ReadManualIn
+    ReadManualIn,
+    'template-back-page': BackPageAnchor
   }
 }
 </script>

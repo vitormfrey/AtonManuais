@@ -2,6 +2,7 @@
   <div class="container-page">
     <template-header></template-header>
     <div class="conteudo">
+      <template-back-page />
       <ReadPost />
     </div>
   </div>
@@ -9,11 +10,13 @@
 <script>
 import ReadPost from '@/components/ReadPost.vue'
 import Header from '@/components/Header'
+import BackPageAnchor from '@/components/BackPageAnchor'
 export default {
   name: 'Post',
   components: {
     ReadPost,
-    'template-header': Header
+    'template-header': Header,
+    'template-back-page': BackPageAnchor
   }
 }
 </script>
