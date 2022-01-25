@@ -16,7 +16,7 @@
       @click.prevent="getManual(manual)"
     >
       <app-title :title="manual.titulo" />
-      <app-department :departamento="manual.departamentos.tipo" />
+      <!-- <app-department :departamento="manual.departamentos.tipo" /> -->
       <app-description :descricao="manual.descricao" />
       <p class="call-to-action text-sm">Ler mais...</p>
     </article>
@@ -25,14 +25,14 @@
 
 <script>
 import Title from '../Titulo/index.vue'
-import Department from '../Departamento/index.vue'
+// import Department from '../Departamento/index.vue'
 import Description from '../Descricao/index.vue'
 
 export default {
   name: 'Manual',
   components: {
     'app-title': Title,
-    'app-department': Department,
+    // 'app-department': Department,
     'app-description': Description
   },
   props: {
