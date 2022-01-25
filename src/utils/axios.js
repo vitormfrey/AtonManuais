@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 if (process.env.NODE_ENV == 'production') {
+  console.log(process.env)
   console.log('producao')
 } else {
   console.log('dev')
