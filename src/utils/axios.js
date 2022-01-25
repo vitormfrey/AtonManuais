@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://api-atonsystemsmanuais.herokuapp.com'
+  baseURL: process.env.VUE_APP_VERCEL_URL
 })
