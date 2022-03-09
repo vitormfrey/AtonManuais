@@ -31,7 +31,6 @@ export const manuaisInternos = {
         const { data } = await axios.get('/manuais-internos', {
           headers: API_KEY
         })
-        // console.log(data)
         if (data.length === 0) {
           throw new Error('Api não retorna Manual')
         }
@@ -47,7 +46,6 @@ export const manuaisInternos = {
         const { data } = await axios.get(`/manuais-internos/${payload}`, {
           headers: API_KEY
         })
-        // console.log(data)
         if (data.id != payload) {
           throw new Error(`O id: ${payload} não é válido ou não existe!`)
         }
@@ -85,7 +83,6 @@ export const manuaisInternos = {
       const API_KEY = authHeader()
       try {
         const { id, tipo } = payload
-
         const { data } = await axios.get(
           `manuais-internos?departamentos=${id}`,
           {
