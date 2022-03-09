@@ -16,7 +16,6 @@ export default {
   methods: {
     verificarRotaAtua() {
       let rotaAtual = window.location.hash
-      console.log(rotaAtual)
       if (rotaAtual.includes('/interno/manuais')) this.rota = '/interno/manuais'
       else this.rota = '/'
     }

@@ -38,8 +38,15 @@ const routes = [
     path: '/interno/manuais/:id',
     name: 'ManuaisRead',
     component: () =>
-      import(/* webpackChunkName: "about" */ '../views/ManualInRead.vue'),
+      import(/* webpackChunkName: "about" */ '../views/ManualReadAuthView.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/teste',
+    name: 'PageTeste',
+    component: () =>
+      import(/* webpackChunkName: "about" */ '../views/PageTeste.vue'),
+    meta: { requiresAuth: false }
   }
 ]
 

@@ -8,20 +8,21 @@
       searchManual="searchInManual"
     />
     <div class="conteudo">
-      <template-back-page />
-      <ReadManualIn />
+      <button-back-page />
+      <template-manual-read-auth />
     </div>
   </div>
 </template>
 <script>
 import Header from '@/components/Header'
 import BackPageAnchor from '@/components/BackPageAnchor'
-import ReadManualIn from '@/components/ReadManualIn.vue'
+import ManualReadAuth from '@/components/ManualReadAuth.vue'
 export default {
+  name: 'ManualReadAuthView',
   components: {
     'template-header': Header,
-    ReadManualIn,
-    'template-back-page': BackPageAnchor
+    'template-manual-read-auth': ManualReadAuth,
+    'button-back-page': BackPageAnchor
   }
 }
 </script>
