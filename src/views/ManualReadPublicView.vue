@@ -2,21 +2,21 @@
   <div class="container-page">
     <template-header></template-header>
     <div class="conteudo">
-      <template-back-page />
-      <ReadPost />
+      <button-back-page />
+      <template-manual-read-public />
     </div>
   </div>
 </template>
 <script>
-import ReadPost from '@/components/ReadPost.vue'
+import ManualReadPublic from '@/components/ManualReadPublic.vue'
 import Header from '@/components/Header'
 import BackPageAnchor from '@/components/BackPageAnchor'
 export default {
   name: 'Post',
   components: {
-    ReadPost,
+    'template-manual-read-public': ManualReadPublic,
     'template-header': Header,
-    'template-back-page': BackPageAnchor
+    'button-back-page': BackPageAnchor
   }
 }
 </script>

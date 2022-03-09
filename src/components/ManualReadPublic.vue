@@ -22,7 +22,7 @@ import axios from '../utils/axios'
 import swal from 'sweetalert'
 
 export default {
-  name: 'ReadPost',
+  name: 'ManualReadPublic',
 
   data() {
     return {

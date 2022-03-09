@@ -14,31 +14,27 @@ const routes = [
   {
     path: '/post/:id',
     name: 'Post',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Post.vue'),
+    component: () => import('../views/ManualReadPublicView.vue'),
     meta: { requiresAuth: false }
   },
   //Login
   {
     path: '/login',
     name: 'Login',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Login.vue'),
+    component: () => import('../views/Login.vue'),
     meta: { requiresAuth: false }
   },
   //Manuais Internos
   {
     path: '/interno/manuais',
     name: 'Manuais',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Manuais.vue'),
+    component: () => import('../views/Manuais.vue'),
     meta: { requiresAuth: true }
   },
   {
     path: '/interno/manuais/:id',
     name: 'ManuaisRead',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/ManualReadAuthView.vue'),
+    component: () => import('../views/ManualReadAuthView.vue'),
     meta: { requiresAuth: true }
   }
   // {
