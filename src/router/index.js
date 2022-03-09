@@ -40,14 +40,14 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/ManualReadAuthView.vue'),
     meta: { requiresAuth: true }
-  },
-  {
-    path: '/teste',
-    name: 'PageTeste',
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/PageTeste.vue'),
-    meta: { requiresAuth: false }
   }
+  // {
+  //   path: '/teste',
+  //   name: 'PageTeste',
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ '../views/PageTeste.vue'),
+  //   meta: { requiresAuth: false }
+  // }
 ]
 
 const router = createRouter({
