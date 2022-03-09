@@ -15,14 +15,14 @@
 </template>
 <script>
 import Header from '@/components/Header'
-import BackPageAnchor from '@/components/BackPageAnchor'
-import ManualReadAuth from '@/components/ManualReadAuth.vue'
+import ButtonBackPage from '@/components/ButtonBackPage'
+import ManualReadAuth from '@/components/ManualReadAuth'
 export default {
   name: 'ManualReadAuthView',
   components: {
     'template-header': Header,
     'template-manual-read-auth': ManualReadAuth,
-    'button-back-page': BackPageAnchor
+    'button-back-page': ButtonBackPage
   }
 }
 </script>

@@ -8,15 +8,15 @@
   </div>
 </template>
 <script>
-import ManualReadPublic from '@/components/ManualReadPublic.vue'
+import ManualReadPublic from '@/components/ManualReadPublic'
 import Header from '@/components/Header'
-import BackPageAnchor from '@/components/BackPageAnchor'
+import ButtonBackPage from '@/components/ButtonBackPage'
 export default {
   name: 'Post',
   components: {
     'template-manual-read-public': ManualReadPublic,
     'template-header': Header,
-    'button-back-page': BackPageAnchor
+    'button-back-page': ButtonBackPage
   }
 }
 </script>
