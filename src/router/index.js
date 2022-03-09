@@ -1,18 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import store from '../store'
-import Home from '../views/Home.vue'
+import HomePublicView from '../views/HomePublicView.vue'
 
 const routes = [
   //Home
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    name: 'HomePublicView',
+    component: HomePublicView,
     meta: { requiresAuth: false }
   },
-  //Post:id
+  //Manual:id
   {
-    path: '/post/:id',
+    path: '/public/read/:id',
     name: 'Post',
     component: () => import('../views/ManualReadPublicView.vue'),
     meta: { requiresAuth: false }
@@ -20,19 +20,19 @@ const routes = [
   //Login
   {
     path: '/login',
-    name: 'Login',
-    component: () => import('../views/Login.vue'),
+    name: 'LoginView',
+    component: () => import('../views/LoginView.vue'),
     meta: { requiresAuth: false }
   },
   //Manuais Internos
   {
-    path: '/interno/manuais',
+    path: '/auth/manuais',
     name: 'Manuais',
-    component: () => import('../views/Manuais.vue'),
+    component: () => import('../views/HomeAuthView.vue'),
     meta: { requiresAuth: true }
   },
   {
-    path: '/interno/manuais/:id',
+    path: '/auth/read/:id',
     name: 'ManuaisRead',
     component: () => import('../views/ManualReadAuthView.vue'),
     meta: { requiresAuth: true }

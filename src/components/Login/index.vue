@@ -40,7 +40,7 @@ export default {
       }).then(() => this.$router.push('/'))
     },
     verificarRota() {
-      if (window.location.hash.substring(0, 17) != '#/interno/manuais') {
+      if (window.location.hash.substring(0, 17) != '#/auth/manuais') {
         return true
       } else {
         return false

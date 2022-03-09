@@ -105,7 +105,7 @@ export default {
           this.dropdownOpen = false
           this.itemSelecionado = 'Departamentos'
           break
-        case '/interno/manuais':
+        case '/auth/manuais':
           if (this.$route.path === path) this.$store.dispatch(this.getManuais)
           else this.$router.push(`${path}`)
           this.dropdownOpen = false

@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'BackPageAnchor',
+  name: 'ButtonBackPage',
   data() {
     return {
       rota: ''
@@ -16,7 +16,7 @@ export default {
   methods: {
     verificarRotaAtua() {
       let rotaAtual = window.location.hash
-      if (rotaAtual.includes('/interno/manuais')) this.rota = '/interno/manuais'
+      if (rotaAtual.includes('/auth/manuais')) this.rota = '/auth/manuais'
       else this.rota = '/'
     }
   }

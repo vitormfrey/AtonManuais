@@ -1,64 +1,53 @@
 <template>
-  <div class="ReadPost my-5 p-3" v-if="Object.keys($selectPost).length != 0">
-    <h1 class="post-titulo text-4xl cursor-auto">{{ $selectPost.titulo }}</h1>
-    <h3 class="post-departamento text-sm cursor-auto">
-      Departamento: {{ $selectPost.departamentos.tipo }}
-    </h3>
-    <section class="body-conteudo" v-html="$getPostContent"></section>
-  </div>
-
-  <div class="ReadPost my-5 p-3" v-else>
-    <h1 class="post-titulo text-4xl cursor-auto">{{ post.titulo }}</h1>
+  <div class="ReadPost my-5 p-3">
+    <h1 class="post-titulo text-4xl cursor-auto">{{ manual.titulo }}</h1>
     <h3 class="post-departamento text-sm cursor-auto">
       Departamento: {{ departamento }}
     </h3>
-    <section class="body-conteudo" v-html="post.conteudo"></section>
+    <section class="body-conteudo" v-html="manual.conteudo"></section>
   </div>
 </template>
 
 <script>
 import markedIt from 'marked-it-core'
-import axios from '../utils/axios'
+import axios from '../../utils/axios'
 import swal from 'sweetalert'
 
 export default {
-  name: 'ManualReadPublic',
+  name: 'ManualReadAuth',
 
   data() {
     return {
-      post: {},
+      manual: {},
       departamento: ''
     }
   },
-  created() {
-    this.getPost()
+  async created() {
+    await this.getManualIn()
   },
   methods: {
-    async getPost() {
+    async getManualIn() {
+      const API_KEY = JSON.parse(localStorage.getItem('token'))
       try {
-        const { data } = await axios.get(`/manuais/${this.$route.params.id}`)
-        this.post = data
+        const { data } = await axios.get(
+          `/manuais-internos/${this.$route.params.id}`,
+          {
+            headers: { Authorization: 'Bearer ' + API_KEY }
+          }
+        )
+        this.manual = data
         const html = markedIt.generate(data.conteudo)
-        this.post.conteudo = html.html.text
+        this.manual.conteudo = html.html.text
         this.departamento = data.departamentos.tipo
-        return this.post
+        return this.manual
       } catch (err) {
         swal({
           title: 'Oops!',
           text: `O id: ${this.$route.params.id} não é válido ou não existe!`,
           icon: 'error',
           buttons: { success: 'Ok!' }
-        }).then(() => this.$router.push('/'))
+        }).then(() => this.$router.push('/interno/manual'))
       }
-    }
-  },
-  computed: {
-    $selectPost() {
-      return this.$store.getters.$selectPost
-    },
-    $getPostContent() {
-      const html = markedIt.generate(this.$store.getters.$getPostContent)
-      return html.html.text
     }
   }
 }
@@ -69,7 +58,6 @@ export default {
 .ReadPost {
   width: 100%;
   display: grid;
-  /* grid-template-columns: 1fr; */
   grid-template-rows: 40px 20px 1fr;
   grid-gap: 1.5rem;
 }
@@ -89,7 +77,6 @@ export default {
   font-size: 24px;
   color: #003561;
 }
-
 .lista {
   display: grid;
   grid-gap: 1.5rem;
@@ -108,7 +95,6 @@ export default {
 }
 .email {
   color: #0676d1;
-  cursor: copy;
 }
 
 @media screen and (max-width: 650px) {

@@ -1,7 +1,7 @@
 <template>
   <span class="ManualInButton">
     <router-link
-      to="/interno/manuais"
+      to="/auth/manuais"
       v-if="verificarPagina()"
       class="text-gray-700 block px-4 py-2 text-sm"
       >Manuais Internos</router-link
@@ -17,13 +17,13 @@
 
 <script>
 export default {
-  name: 'ManualInButton',
+  name: 'ManualAuthButton',
   created() {
     this.verificarRota()
   },
   methods: {
     verificarRota() {
-      if (window.location.hash.substring(0, 17) != '#/interno/manuais') {
+      if (window.location.hash.substring(0, 17) != '#/auth/manuais') {
         return true
       } else {
         return false
