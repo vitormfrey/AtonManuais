@@ -11,7 +11,7 @@
 
 <script>
 import Manual from '../Manual/index.vue'
-import Loading from '../../Loading.vue'
+import Loading from '../../LoadingAnimation/index.vue'
 
 export default {
   name: 'ManualCardTemplate',

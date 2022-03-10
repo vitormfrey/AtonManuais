@@ -2,13 +2,13 @@
   <div class="container-login">
     <div class="col-1">
       <div class="img-login">
-        <img src="../assets/user_circle.svg" alt="Logo usuário" />
+        <img src="../../assets/user_circle.svg" alt="Logo usuário" />
         <p>ÁREA RESTRITA</p>
       </div>
     </div>
     <div class="col-2">
       <img
-        src="../assets/logo-aton-login.png"
+        src="../../assets/logo-aton-login.png"
         alt="Logo AtonSystems Soluções em Ti"
         loading="lazy"
       />
@@ -52,7 +52,7 @@
 
 <script>
 import swal from 'sweetalert'
-import User from '../models/UserModel'
+import User from '../../models/UserModel'
 export default {
   name: 'LoginForm',
   data() {
@@ -60,14 +60,28 @@ export default {
       user: new User('', '')
     }
   },
+
+  /** Essa função dispara uma action para gravar o token no localstorage */
   async created() {
     await this.$store.dispatch('tokenSet')
-    if (this.loggedIn) {
-      this.$router.push('/interno/manuais')
+    if (this.authToken) {
+      this.$router.push('/auth/manuais')
     }
   },
   methods: {
+    /**
+     * Realiza o evento de login
+     *
+     * @Fires handleLogin
+     */
     async handleLogin(e) {
+      /**
+       * handleLogin evento de login que dispara uma action aguardando o retorno
+       *
+       * @event handleLogin
+       * @
+       */
+
       e.preventDefault()
       await this.$store.dispatch('login', this.user)
       swal({
@@ -75,11 +89,12 @@ export default {
         text: `Login realizado!`,
         icon: 'success',
         buttons: { success: 'Ok!' }
-      }).then(() => this.$router.push('/interno/manuais'))
+      }).then(() => this.$router.push('/auth/manuais'))
     }
   },
   computed: {
-    loggedIn() {
+    /** Essa função verifica o localstorage para retornar o Token de autenticação. */
+    authToken() {
       return this.$store.getters.$getToken
     }
   }
@@ -155,7 +170,5 @@ export default {
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   display: block;
-}
-.col-2 img {
 }
 </style>

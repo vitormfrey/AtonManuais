@@ -10,11 +10,11 @@
 
 <script>
 import markedIt from 'marked-it-core'
-import axios from '../utils/axios'
+import axios from '../../utils/axios'
 import swal from 'sweetalert'
 
 export default {
-  name: 'ReadPost',
+  name: 'ManualReadAuth',
 
   data() {
     return {
@@ -58,7 +58,6 @@ export default {
 .ReadPost {
   width: 100%;
   display: grid;
-  /* grid-template-columns: 1fr; */
   grid-template-rows: 40px 20px 1fr;
   grid-gap: 1.5rem;
 }
@@ -78,7 +77,6 @@ export default {
   font-size: 24px;
   color: #003561;
 }
-
 .lista {
   display: grid;
   grid-gap: 1.5rem;

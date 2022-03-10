@@ -36,7 +36,6 @@ export const manuais = {
     async fetchPosts(context) {
       try {
         const { data } = await axios.get('/manuais?_sort=id:desc')
-        // console.log(data)
         if (data.length === 0) {
           throw new Error(
             'Api não encontrou nenhum manual, volte mais tarde 😉'
@@ -63,7 +62,6 @@ export const manuais = {
     async filtrarDepartamento(context, payload) {
       try {
         const { id, tipo } = payload
-
         const { data } = await axios.get(`/manuais?departamentos=${id}`)
 
         if (data.length === 0) {

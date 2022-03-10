@@ -1,27 +1,22 @@
 <template>
   <div class="container-page">
-    <template-header
-      departamento="getDepartamentosIn"
-      manuais="getManuaisIn"
-      filtroDepartamento="filterDepartamentoIn"
-      getterDepartamento="$getDepartamentosIn"
-      searchManual="searchInManual"
-    />
+    <template-header></template-header>
     <div class="conteudo">
-      <template-back-page />
-      <ReadManualIn />
+      <button-back-page />
+      <template-manual-read-public />
     </div>
   </div>
 </template>
 <script>
+import ManualReadPublic from '@/components/ManualReadPublic'
 import Header from '@/components/Header'
-import BackPageAnchor from '@/components/BackPageAnchor'
-import ReadManualIn from '@/components/ReadManualIn.vue'
+import ButtonBackPage from '@/components/ButtonBackPage'
 export default {
+  name: 'Post',
   components: {
+    'template-manual-read-public': ManualReadPublic,
     'template-header': Header,
-    ReadManualIn,
-    'template-back-page': BackPageAnchor
+    'button-back-page': ButtonBackPage
   }
 }
 </script>

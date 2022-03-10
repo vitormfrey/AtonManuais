@@ -1,3 +1,4 @@
+s
 <template>
   <div>
     <input
@@ -67,7 +68,7 @@ div {
   width: 50px;
   height: 49px;
   right: 50px;
-  background: url('../assets/lupa.svg') no-repeat center;
+  background: url('../../assets/lupa.svg') no-repeat center;
   background-color: #003561;
   border: solid;
   border-color: #00bce5;

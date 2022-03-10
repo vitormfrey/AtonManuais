@@ -69,12 +69,12 @@
 </template>
 
 <script>
-import ManualInButton from '../ManualInButton/index.vue'
+import ManualAuthButton from '../ManualAuthButton/index.vue'
 import Login from '../Login/index.vue'
 export default {
   name: 'DropDown',
   components: {
-    'app-call-to-action-manualIn': ManualInButton,
+    'app-call-to-action-manualIn': ManualAuthButton,
     'app-login': Login
   },
   data() {

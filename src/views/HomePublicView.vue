@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import Titulo from '@/components/Titulo.vue'
+import Titulo from '@/components/Titulo'
 import Header from '@/components/Header'
 import ManualCardTemplate from '../components/ManualCard/template/ManualTemplateView.vue'
 
 export default {
-  name: 'Home',
+  name: 'HomePublicView',
   components: {
     'template-header': Header,
     'template-title': Titulo,

@@ -22,6 +22,7 @@ import Header from '@/components/Header'
 import ManualCardTemplate from '@/components/ManualCard/template/ManualTemplateView.vue'
 
 export default {
+  name: 'HomeAuthView',
   components: {
     'template-header': Header,
     'template-manual-card': ManualCardTemplate

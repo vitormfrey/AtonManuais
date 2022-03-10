@@ -1,24 +1,8 @@
-# vue-manuais
+# AtonSystems
+<p align="center"><img src="https://raw.githubusercontent.com/vitormfrey/AtonManuais/main/src/assets/logo-aton-login.png" width="500" height="auto"/></p>
 
-## Project setup
-```
-npm install
-```
+## Project 
+This project was created to help the company AtonSystems to manage and publish your system manuals.</br>
+Describing your system functions and helping your customers to use the system.
+## Technologies 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -1,22 +1,28 @@
 <template>
   <div class="container-page">
-    <template-header></template-header>
+    <template-header
+      departamento="getDepartamentosIn"
+      manuais="getManuaisIn"
+      filtroDepartamento="filterDepartamentoIn"
+      getterDepartamento="$getDepartamentosIn"
+      searchManual="searchInManual"
+    />
     <div class="conteudo">
-      <template-back-page />
-      <ReadPost />
+      <button-back-page />
+      <template-manual-read-auth />
     </div>
   </div>
 </template>
 <script>
-import ReadPost from '@/components/ReadPost.vue'
 import Header from '@/components/Header'
-import BackPageAnchor from '@/components/BackPageAnchor'
+import ButtonBackPage from '@/components/ButtonBackPage'
+import ManualReadAuth from '@/components/ManualReadAuth'
 export default {
-  name: 'Post',
+  name: 'ManualReadAuthView',
   components: {
-    ReadPost,
     'template-header': Header,
-    'template-back-page': BackPageAnchor
+    'template-manual-read-auth': ManualReadAuth,
+    'button-back-page': ButtonBackPage
   }
 }
 </script>

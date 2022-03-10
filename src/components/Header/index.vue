@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Search from '../Search.vue'
+import Search from '../Search/index.vue'
 import DropDown from '../DropDown/index.vue'
 import DepartamentoList from '../DepartamentoList/index.vue'
 
