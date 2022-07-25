@@ -1,5 +1,7 @@
 <template>
-  <router-link :to="rota" class="back-page"> voltar</router-link>
+  <router-link :to="rota" class="back-page">
+    <img src="../../assets/seta-pequena-esquerda.svg" />
+  </router-link>
 </template>
 
 <script>
@@ -26,12 +28,17 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 .back-page {
-  color: #003561;
   display: inline-block;
   justify-self: start;
-  font-size: 1.3em;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif !important;
   font-weight: bold;
+  width: 60px;
+  height: 60px;
+}
+@media screen and (max-width: 650px) {
+  .back-page {
+    width: 30px;
+    height: 30px;
+  }
 }
 </style>
