@@ -1,14 +1,30 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import axios from '../utils/axios'
 import swal from 'sweetalert'
 
 export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
+  /**
+   *  @State
+   */
   const documents = ref([])
   const document = ref({})
   const departamentos = ref([])
 
-  /**Actions */
+  watch(
+    document,
+    (value) => {
+      localStorage.setItem('publicDocument', JSON.stringify(value))
+    },
+    { deep: true }
+  )
+
+  if (localStorage.getItem('publicDocument')) {
+    document.value = JSON.parse(localStorage.getItem('publicDocument'))
+  }
+  /**
+   *  @Actions
+   */
   const getDocuments = async () => {
     try {
       const { data } = await axios.get('/manuais?_sort=id:desc')
@@ -40,19 +56,9 @@ export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
     }
   }
   const filterDepartamento = async (params) => {
-    try {
-      const { id, tipo } = params
-      const { data } = await axios.get(`/manuais?departamentos=${id}`)
-
-      if (data.length === 0) {
-        throw new Error(
-          `Não foi possível encontrar nenhum manual do departamento: ${tipo}`
-        )
-      }
-      documents.value = data
-    } catch (err) {
-      swal('Oops!', err.message, 'error')
-    }
+    const { id } = params
+    var value = documents.value.filter((x) => x.departamentos.id == id)
+    documents.value = value
   }
   const searchDocument = async (param) => {
     if (param.split('').length > 2) {
@@ -65,7 +71,7 @@ export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
             .every((v) => e.titulo.toLowerCase().includes(v))
         })
 
-        if (pesquisa.length > 0) document.value = pesquisa
+        if (pesquisa.length > 0) documents.value = pesquisa
         else
           return swal(
             'Oops!',
@@ -75,12 +81,22 @@ export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
       }
     } else return documents.value
   }
+  const getDocumentById = async (param) => {
+    try {
+      const { data } = await axios.get(`/manuais/${param}`)
+      document.value = data
+    } catch (e) {
+      console.Error(e)
+    }
+  }
+
   return {
     getDocuments,
     setDocument,
     getDepartamentos,
     filterDepartamento,
     searchDocument,
+    getDocumentById,
     documents,
     document,
     departamentos
