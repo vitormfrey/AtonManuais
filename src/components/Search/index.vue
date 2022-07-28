@@ -1,4 +1,32 @@
-s
+<script setup>
+import { bool } from 'prop-types'
+import { ref, defineProps, watch, toRefs } from 'vue'
+import { usePrivateDocumentsStore } from '../../store/PrivateDocuments'
+import { usePublicDocumentsStore } from '../../store/PublicDocuments'
+
+const usePublicStore = usePublicDocumentsStore()
+const usePrivateStore = usePrivateDocumentsStore()
+const props = defineProps({ isAuthenticated: { type: bool, default: false } })
+const { isAuthenticated } = toRefs(props)
+const searchQuery = ref('')
+
+const search = (query) => {
+  if (!isAuthenticated.value) usePublicStore.searchDocument(query)
+  else usePrivateStore.searchDocument(query)
+}
+const pullDocuments = () => {
+  if (!isAuthenticated.value) usePublicStore.getDocuments()
+  else usePrivateStore.getDocuments()
+}
+watch(searchQuery, (newValue, oldValue) => {
+  if (newValue != oldValue) {
+    if (newValue == null || newValue == undefined || newValue == ``) {
+      return pullDocuments()
+    } else search(newValue)
+  }
+})
+</script>
+
 <template>
   <div>
     <input
@@ -16,41 +44,6 @@ s
     <input type="button" value class="search-btn rounded-md" />
   </div>
 </template>
-
-<script>
-export default {
-  name: 'Search',
-  props: {
-    searchIn: { type: String, default: 'search' },
-    getManuais: { type: String, default: 'fetchPosts' }
-  },
-  data() {
-    return {
-      searchQuery: null
-    }
-  },
-  methods: {
-    searchManual(e) {
-      this.$store.dispatch(this.searchIn, e)
-    }
-  },
-  watch: {
-    searchQuery: function (newStringValue, oldStringValue) {
-      if (newStringValue != oldStringValue) {
-        if (
-          newStringValue == null ||
-          newStringValue == undefined ||
-          newStringValue == ''
-        ) {
-          return this.$store.dispatch(this.getManuais)
-        } else {
-          return this.searchManual(newStringValue)
-        }
-      }
-    }
-  }
-}
-</script>
 
 <style scoped>
 div {

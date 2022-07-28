@@ -1,16 +1,16 @@
 <script setup>
-import { usePublicDocumentsStore } from '../../store/PublicDocuments'
-import { computed, ref } from 'vue'
+import { usePrivateDocumentsStore } from '../../store/PrivateDocuments'
+import { computed } from 'vue'
 import Badge from '../Badge/Badge'
-import router from '../../router'
-const useStore = usePublicDocumentsStore()
-const isEmpty = ref(Object.keys(useStore.document).length === 0)
-const init = () => {
-  if (isEmpty.value) {
-    let { id } = router.currentRoute.value.params
-    useStore.getDocumentById(id)
-  }
-}
+// import router from '../../router'
+const useStore = usePrivateDocumentsStore()
+// const isEmpty = ref(Object.keys(useStore.document).length === 0)
+// const init = () => {
+//   if (isEmpty.value) {
+//     let { id } = router.currentRoute.value.params
+//     useStore.getDocumentById(id)
+//   }
+// }
 const updated = computed(() => {
   return useStore.document.updated_at
     .substring(0, 10)
@@ -18,7 +18,7 @@ const updated = computed(() => {
     .reverse()
     .join('-')
 })
-init()
+// init()
 </script>
 
 <template>

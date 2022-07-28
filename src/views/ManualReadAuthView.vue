@@ -1,30 +1,16 @@
 <template>
   <div class="container-page">
-    <template-header
-      departamento="getDepartamentosIn"
-      manuais="getManuaisIn"
-      filtroDepartamento="filterDepartamentoIn"
-      getterDepartamento="$getDepartamentosIn"
-      searchManual="searchInManual"
-    />
+    <Header :isAuthRoute="true" />
     <div class="conteudo">
-      <button-back-page />
-      <template-manual-read-auth />
+      <BackButton />
+      <ReadDocument />
     </div>
   </div>
 </template>
-<script>
-import Header from '@/components/Header'
-import ButtonBackPage from '@/components/ButtonBackPage'
-import ManualReadAuth from '@/components/ManualReadAuth'
-export default {
-  name: 'ManualReadAuthView',
-  components: {
-    'template-header': Header,
-    'template-manual-read-auth': ManualReadAuth,
-    'button-back-page': ButtonBackPage
-  }
-}
+<script setup>
+import Header from '@/components/Header/Header'
+import BackButton from '@/components/Button/BackButton'
+import ReadDocument from '@/components/AuthDocument/ReadDocument'
 </script>
 
 <style scoped>

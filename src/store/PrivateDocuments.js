@@ -78,7 +78,7 @@ export const usePrivateDocumentsStore = defineStore('privateDocuments', () => {
             .every((v) => e.titulo.toLowerCase().includes(v))
         })
 
-        if (pesquisa.length > 0) document.value = pesquisa
+        if (pesquisa.length > 0) documents.value = pesquisa
         else
           return swal(
             'Oops!',

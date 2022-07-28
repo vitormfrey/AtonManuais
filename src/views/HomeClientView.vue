@@ -1,20 +1,21 @@
 <script setup>
+import Titulo from '@/components/Titulo/Titulo'
 import Header from '@/components/Header/Header'
-import Card from '@/components/Card/Card'
-import { usePrivateDocumentsStore } from '../store/PrivateDocuments'
-const useStore = usePrivateDocumentsStore()
+import Card from '../components/Card/Card.vue'
+import { usePublicDocumentsStore } from '../store/PublicDocuments'
+const useStore = usePublicDocumentsStore()
 useStore.getDocuments()
 </script>
 
 <template>
   <div class="container-home">
-    <Header :isAuthRoute="true" />
+    <Header />
     <div class="conteudo">
+      <Titulo title="Manuais" />
       <Card
         v-for="document in useStore.documents"
         :key="document.id"
         :documentCard="document"
-        :isAuthenticated="true"
       ></Card>
     </div>
   </div>
@@ -27,20 +28,21 @@ useStore.getDocuments()
 .conteudo {
   display: grid;
   grid-template-columns: 1fr;
-  justify-items: center;
+  justify-items: left;
   grid-gap: 1rem;
   padding: 0px 60px;
-  margin-top: 60px;
+  margin: 30px 0 0 0;
 }
-
+.conteudo div {
+  width: 100%;
+}
 @media screen and (max-width: 649px) {
-  .home {
-    display: grid;
-    justify-content: center;
-  }
   .conteudo {
     padding: 0px 20px;
     margin-top: 60px;
+  }
+  .Titulo {
+    display: none;
   }
 }
 </style>

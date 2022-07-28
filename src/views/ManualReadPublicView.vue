@@ -1,14 +1,14 @@
 <script setup>
 import ReadDocument from '@/components/ClientDocument/ReadDocument'
-import Header from '@/components/Header'
-import ButtonBackPage from '@/components/ButtonBackPage'
+import Header from '@/components/Header/Header'
+import BackButton from '@/components/Button/BackButton'
 </script>
 
 <template>
   <div class="container-page">
     <Header />
     <div class="conteudo">
-      <ButtonBackPage />
+      <BackButton />
       <ReadDocument />
     </div>
   </div>

@@ -30,7 +30,7 @@ export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
       const { data } = await axios.get('/manuais?_sort=id:desc')
       documents.value = data
     } catch (e) {
-      console.Error(e)
+      console.error(e)
     }
   }
   const setDocument = (param) => {
@@ -86,7 +86,7 @@ export const usePublicDocumentsStore = defineStore('publicDocuments', () => {
       const { data } = await axios.get(`/manuais/${param}`)
       document.value = data
     } catch (e) {
-      console.Error(e)
+      console.error(e)
     }
   }
 

@@ -50,54 +50,24 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import swal from 'sweetalert'
 import User from '../../models/UserModel'
-export default {
-  name: 'LoginForm',
-  data() {
-    return {
-      user: new User('', '')
-    }
-  },
+import router from '../../router'
+import { ref } from 'vue'
+import { useAuthStore } from '../../store/Auth'
 
-  /** Essa função dispara uma action para gravar o token no localstorage */
-  async created() {
-    await this.$store.dispatch('tokenSet')
-    if (this.authToken) {
-      this.$router.push('/auth/manuais')
-    }
-  },
-  methods: {
-    /**
-     * Realiza o evento de login
-     *
-     * @Fires handleLogin
-     */
-    async handleLogin(e) {
-      /**
-       * handleLogin evento de login que dispara uma action aguardando o retorno
-       *
-       * @event handleLogin
-       * @
-       */
-
-      e.preventDefault()
-      await this.$store.dispatch('login', this.user)
-      swal({
-        title: 'Sucesso!',
-        text: `Login realizado!`,
-        icon: 'success',
-        buttons: { success: 'Ok!' }
-      }).then(() => this.$router.push('/auth/manuais'))
-    }
-  },
-  computed: {
-    /** Essa função verifica o localstorage para retornar o Token de autenticação. */
-    authToken() {
-      return this.$store.getters.$getToken
-    }
-  }
+const user = ref(new User())
+const useStore = useAuthStore()
+const handleLogin = async (e) => {
+  e.preventDefault()
+  const res = await useStore.login(user)
+  swal({
+    title: res.title,
+    text: res.msg,
+    icon: res.status,
+    buttons: res.isSuccess ? { success: 'Ok!' } : { erro: 'Ok' }
+  }).then(() => router.push(res.route))
 }
 </script>
 
