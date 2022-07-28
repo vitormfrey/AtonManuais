@@ -1,17 +1,30 @@
 <script setup>
-import { defineProps, toRefs } from 'vue'
 import router from '../../router'
-import { usePublicDocumentsStore } from '../../store/PublicDocuments'
 import Badge from '../Badge/Badge.vue'
+import { bool } from 'prop-types'
+import { defineProps, toRefs } from 'vue'
+import { usePublicDocumentsStore } from '../../store/PublicDocuments'
+import { usePrivateDocumentsStore } from '../../store/PrivateDocuments'
 
-const useStore = usePublicDocumentsStore()
 const props = defineProps({
-  documentCard: Object
+  documentCard: Object,
+  isAuthenticated: { type: bool, default: false }
 })
-const { documentCard } = toRefs(props)
+const { documentCard, isAuthenticated } = toRefs(props)
+const usePublicStore = usePublicDocumentsStore()
+const usePrivateStore = usePrivateDocumentsStore()
+/**
+ * @Event
+ * @param { id }
+ */
 const handleClickEvent = (event) => {
-  useStore.setDocument(event)
-  router.push({ name: 'Post', params: { id: event } })
+  if (!isAuthenticated.value) {
+    usePublicStore.setDocument(event)
+    router.push({ name: 'Post', params: { id: event } })
+  } else {
+    usePrivateStore.setDocument(event)
+    router.push({ name: 'ManuaisRead', params: { id: event } })
+  }
 }
 </script>
 
