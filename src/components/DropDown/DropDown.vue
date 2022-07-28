@@ -1,8 +1,16 @@
+<script setup>
+import SingIn from '../Login/SingIn.vue'
+import Preferences from '../DropDownPreferences/Preferences.vue'
+import { ref } from 'vue'
+
+const isOpen = ref(false)
+</script>
+
 <template>
   <div class="relative inline-block text-left" id="DropDown">
     <div>
       <button
-        @click="dropdownOpen = !dropdownOpen"
+        @click="isOpen = !isOpen"
         class="
           inline-flex
           justify-center
@@ -42,7 +50,7 @@
       </button>
     </div>
     <div
-      v-show="dropdownOpen"
+      v-show="isOpen"
       class="
         origin-top-right
         absolute
@@ -61,35 +69,20 @@
       tabindex="-1"
     >
       <div class="py-1" role="none">
-        <app-login></app-login>
-        <app-call-to-action-manualIn></app-call-to-action-manualIn>
+        <SingIn />
+        <Preferences />
       </div>
     </div>
   </div>
 </template>
 
-<script>
-import ManualAuthButton from '../ManualAuthButton/index.vue'
-import Login from '../Login/index.vue'
-export default {
-  name: 'DropDown',
-  components: {
-    'app-call-to-action-manualIn': ManualAuthButton,
-    'app-login': Login
-  },
-  data() {
-    return {
-      dropdownOpen: false
-    }
-  }
-}
-</script>
-
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&family=Rubik&display=swap');
+
 .btnText {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold !important;
-  text-transform: uppercase !important;
+  font-family: 'Rubik', sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
   cursor: pointer;
 }
 </style>
