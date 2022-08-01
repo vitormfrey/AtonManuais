@@ -94,7 +94,6 @@ router.beforeEach((to, from, next) => {
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.maintenanceMode)) {
     if (isMaintenance) {
-      console.log(isMaintenance)
       next({ path: '/maintenance' })
     } else {
       next()

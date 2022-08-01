@@ -39,7 +39,7 @@ export const useAuthStore = defineStore('auth', () => {
         status: 'success',
         title: 'Sucesso!',
         msg: 'Login realizado!',
-        route: '/auth/manuais',
+        route: '/auth/home',
         isSuccess: true
       }
     } catch (e) {

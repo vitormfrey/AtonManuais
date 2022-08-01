@@ -33,7 +33,7 @@ export const usePrivateDocumentsStore = defineStore('privateDocuments', () => {
       })
       documents.value = data
     } catch (e) {
-      console.log(API_TOKEN)
+      console.error(e)
     }
   }
   const setDocument = (param) => {
