@@ -9,8 +9,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #app {
-  background-color: #f5f5f5;
+  height: 100vh;
 }
 </style>

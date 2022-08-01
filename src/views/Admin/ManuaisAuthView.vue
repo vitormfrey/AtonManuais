@@ -1,7 +1,7 @@
 <script setup>
 import Header from '@/components/Header/Header'
-import Card from '@/components/Admin/Card'
-import { usePrivateDocumentsStore } from '../store/PrivateDocuments'
+import Card from '@/components/Card/Card'
+import { usePrivateDocumentsStore } from '../../store/PrivateDocuments'
 const useStore = usePrivateDocumentsStore()
 useStore.getDocuments()
 </script>
@@ -10,10 +10,12 @@ useStore.getDocuments()
   <div class="container-home">
     <Header :isAuthRoute="true" />
     <div class="conteudo">
-      <Card categoria="Manuais" :route="'/auth/manuais'" />
-      <Card categoria="Implantação" />
-      <Card categoria="Importador" />
-      <Card categoria="Drivers" :route="'/auth/drivers'" />
+      <Card
+        v-for="document in useStore.documents"
+        :key="document.id"
+        :documentCard="document"
+        :isAuthenticated="true"
+      ></Card>
     </div>
   </div>
 </template>
@@ -23,15 +25,13 @@ useStore.getDocuments()
   display: grid;
 }
 .conteudo {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  margin-top: 60px;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 1rem;
   padding: 0px 60px;
+  margin-top: 60px;
 }
-
 @media screen and (max-width: 649px) {
   .home {
     display: grid;

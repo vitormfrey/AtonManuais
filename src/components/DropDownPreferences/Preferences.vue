@@ -12,11 +12,12 @@ const visibility = ref(router.currentRoute.value.meta.requiresAuth)
 <template>
   <span class="ManualInButton">
     <router-link
-      to="/auth/manuais"
+      to="/auth/home"
       v-if="!visibility"
       :class="{ isLogged: !isAuthenticated }"
       class="text-gray-700 block px-4 py-2 text-sm"
-      >Manuais Internos</router-link
+    >
+      Área interna</router-link
     >
     <router-link
       to="/"
